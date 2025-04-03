@@ -1,0 +1,19 @@
+﻿@model DinhVanHoangDuy_2180609183.Models.Subject
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Add Subject";
+}
+
+<h2>Create a Subject</h2>
+
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<a asp-controller="Subject" asp-action="Index" class="btn btn-danger btn-sm">Back</a>

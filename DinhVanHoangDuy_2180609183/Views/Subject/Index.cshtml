@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DinhVanHoangDuy_2180609183.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Subject</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>@subject.Name</td>
+                <td>
+                    <a asp-controller="Subject" asp-action="Update" asp-routeid="@subject.Id" class="btn btn-info btn-sm">Edit</a>
+                    <a asp-controller="Subject" asp-action="Delete" asp-routeid="@subject.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Course" asp-action="Index" class="btn btn-danger btn-sm">Back</a>

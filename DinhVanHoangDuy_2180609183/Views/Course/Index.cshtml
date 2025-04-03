@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DinhVanHoangDuy_2180609183.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Courses Lists</h2>
+
+<button id="load-courses">Tải Sản Phẩm</button>
+<ul id="course-list"></ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.Price</td>
+                <td>@course.Description</td>
+                <td>@(course.ImageUrl ?? "No Image")</td>
+                <td>@(course.Subject.Name ?? "No Category")</td>
+                <td>
+                    <a asp-controller="Course" asp-action="Display" asp-routeid="@course.Id" class="btn btn-primary btn-sm">View</a>
+                    <a asp-controller="Course" asp-action="Update" asp-routeid="@course.Id" class="btn btn-info btn-sm">Edit</a>
+                    <a asp-controller="Course" asp-action="Delete" asp-routeid="@course.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $("#load-courses").click(function () {
+            $.ajax({
+                url: "/api/courses",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $("#course-list").empty();
+                    $.each(data, function (index, course) {
+                        $("#course-list").append(`<li>${course.name} - ${course.price} VND</li>`);
+                    });
+                },
+                error: function () {
+                    alert("Lỗi khi tải sản phẩm!");
+                }
+            });
+        });
+    });
+</script>

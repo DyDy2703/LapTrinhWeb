@@ -1,0 +1,13 @@
+﻿@model DinhVanHoangDuy_2180609183.Models.Subject
+@{
+    ViewData["Title"] = "Delete Subject";
+}
+
+<h2>Delete Subject</h2>
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Are you sure you want to delete @Model.Name?</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<a asp-controller="Subject" asp-action="Index" class="btn btn-danger btn-sm">Back</a>
