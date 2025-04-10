@@ -10,5 +10,5 @@ namespace DinhVanHoangDuy_2180609183_Web.Models
         public string? Address { get; set; }
         public string? Age { get; set; }
         public string? PhoneNumber { get; set; }
-    } 
+    }
 }

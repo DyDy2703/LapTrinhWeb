@@ -21,14 +21,21 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
         public async Task <IActionResult> Index()
         {
             var users = _userManager.Users.ToList();
-            var nonAdminUsers = new List<ApplicationUser>();
+            var nonAdminUsers = new List<EditRolesViewModel>();
 
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
                 if (!roles.Contains("Admin")) // loại bỏ user có role Admin
                 {
-                    nonAdminUsers.Add(user);
+                    var roleItems = roles.Select(r => new RoleItem { RoleName = r }).ToList();
+
+                    nonAdminUsers.Add(new EditRolesViewModel
+                    {
+                        UserId = user.Id,
+                        UserName = user.UserName,
+                        Roles = roleItems
+                    });
                 }
             }
 
@@ -45,7 +52,7 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
             {
                 UserId = user.Id,
                 UserName = user.UserName,
-                AllRoles = allRoles.Select(r => new RoleItem
+                Roles = allRoles.Select(r => new RoleItem
                 {
                     RoleName = r.Name,
                     IsSelected = userRoles.Contains(r.Name)
@@ -61,7 +68,7 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
             var user = await _userManager.FindByIdAsync(model.UserId);
             var currentRoles = await _userManager.GetRolesAsync(user);
 
-            var selectedRoles = model.AllRoles.Where(r => r.IsSelected).Select(r => r.RoleName).ToList();
+            var selectedRoles = model.Roles.Where(r => r.IsSelected).Select(r => r.RoleName).ToList();
 
             var result = await _userManager.RemoveFromRolesAsync(user, currentRoles);
             if (!result.Succeeded)
