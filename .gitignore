@@ -1,0 +1,10 @@
+# Visual Studio
+.vs
+.user
+.suo
+.vssscc
+.vspscc
+
+# Build folders
+bin
+obj

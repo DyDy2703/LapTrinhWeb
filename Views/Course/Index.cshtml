@@ -1,0 +1,37 @@
+﻿@using Microsoft.IdentityModel.Tokens
+@model IEnumerable<DinhVanHoangDuy_2180609183_Web.Models.Course>
+<h2>Courses</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Name</td>
+                    <td>@course.Price</td>
+                    <td>@course.Description</td>
+                    <td>@(course.Category?.Name ?? "No Category")</td>
+                    <td>
+                        <img src="~/@(string.IsNullOrEmpty(course.ImageUrl) ? "/images/no-image.jpg" : course.ImageUrl)" alt="ImageUrl" style ="width=50px; height=auto;" />
+                    </td>
+                    <td>
+                        <a asp-controller="Course" asp-action="Display" asp-route-id="@course.Id" class="btn btn-info">View</a> |
+                        <a asp-controller="Course" asp-action="Update" asp-route-id="@course.Id" class="btn btn-primary">Edit</a> |
+                        <a asp-controller="Course" asp-action="Delete" asp-route-id="@course.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

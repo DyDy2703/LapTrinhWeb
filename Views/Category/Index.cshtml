@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DinhVanHoangDuy_2180609183_Web.Models.Category>
+<h2>Categories</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null) {
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>
+                        <a asp-action="Update" asp-routeid="@category.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-routeid="@category.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
