@@ -1,11 +1,13 @@
 ﻿@model ShoppingCart
 <h2>Your Cart</h2>
-<table>
+<table class="table table-bordered table-hover align-middle">
     <tr>
-        <td>Course</td>
-        <td>Quantity</td>
-        <td>Price</td>
-        <td>Total</td>
+        <th scope="col">Image</th>
+        <th scope="col">Course</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
     </tr>
     @foreach (var item in Model.Items)
     {
