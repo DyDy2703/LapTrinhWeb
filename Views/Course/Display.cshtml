@@ -1,12 +1,36 @@
 ﻿@model DinhVanHoangDuy_2180609183_Web.Models.Course
 
-<h2>@Model.Name</h2>
-<div>
-    <h3>Price: @Model.Price</h3>
-    <p>@Model.Description</p>
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-    {
-        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" />
-    }
+<h2 class="text-primary">@Model.Name</h2>
+<div class="container mt-4">
+    <h3>Chi Tiết Sản Phẩm</h3>
+    @* <h4 class="mb-4">@Model.Name</h4> *@
+
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="@Url.Content(Model.ImageUrl ?? "~/images/no-image.jpg")" alt="Ảnh sản phẩm"
+                 class="img-fluid rounded shadow-sm" style="max-height: 300px;" />
+        </div>
+
+        <div class="col-md-8">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Giá:</th>
+                    <td>@Model.Price.ToString("N0")₫</td>
+                </tr>
+                <tr>
+                    <th>Mô tả:</th>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <th>Loại:</th>
+                    <td>@(Model.Category?.Name ?? "No Category")</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
 </div>
-<a asp-action="Index">Back to List</a>
+<div class="mt-4">
+    <button asp-action="Update" class="btn btn-primary">Update</button>
+    <button asp-action="Index" class="btn btn-info">Back to List</button>
+</div>

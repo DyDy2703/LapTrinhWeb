@@ -30,8 +30,23 @@
     <div class="form-group">
         <label asp-for="ImageUrl">Product Image</label>
         <input type="file" asp-for="ImageUrl" class="form-control" />
-        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:
-200px;" />
+        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" />
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
+    <button asp-action="Index" class="btn btn-danger">Back to List</button>
 </form>
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.getElementById("previewImage")
+                img.src = e.target.result
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+</script>

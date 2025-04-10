@@ -23,7 +23,7 @@
                     <td>@course.Description</td>
                     <td>@(course.Category?.Name ?? "No Category")</td>
                     <td>
-                        <img src="~/@(string.IsNullOrEmpty(course.ImageUrl) ? "/images/no-image.jpg" : course.ImageUrl)" alt="ImageUrl" style ="width=50px; height=auto;" />
+                        <img src="@Url.Content(string.IsNullOrEmpty(course.ImageUrl) ? "~/images/no-image.jpg" : course.ImageUrl)" alt="ImageUrl" style="width: 100px; height:auto; " />
                     </td>
                     <td>
                         <a asp-controller="Course" asp-action="Display" asp-route-id="@course.Id" class="btn btn-info">View</a> |
