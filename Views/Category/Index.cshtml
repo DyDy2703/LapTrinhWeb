@@ -14,11 +14,13 @@
                 <tr>
                     <td>@category.Name</td>
                     <td>
+                        No Permission
                         @* <a asp-action="Update" asp-routeid="@category.Id" class="btn btn-primary">Edit</a> *@
-                        <a asp-action="Delete" asp-routeid="@category.Id" class="btn btn-danger">Delete</a>
+                        @* <a asp-action="Delete" asp-routeid="@category.Id" class="btn btn-danger">Delete</a> *@
                     </td>
                 </tr>
             }
         }
     </tbody>
 </table>
+<a asp-area="" asp-controller="Course" asp-action="Index" class="btn btn-danger">Back to List</a>
