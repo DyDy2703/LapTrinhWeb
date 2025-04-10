@@ -1,12 +1,12 @@
-﻿@model DinhVanHoangDuy_2180609183_Web.Models.Course
+﻿@model DinhVanHoangDuy_2180609183_Web.Models.Category
 
 @{
-    ViewData["Title"] = "Delete Course";
+    ViewData["Title"] = "Delete Category";
 }
 
 <form asp-action="DeleteConfirmed" method="post">
     <input type="hidden" asp-for="Id" />
     <p>Are you sure you want to delete @Model.Name?</p>
     <button type="submit" class="btn btn-danger">Delete</button>
-    <button asp-area="" asp-controller="Course" asp-action="Index" class="btn btn-info">Back to List</button>
+    <button asp-area="" asp-controller="Category" asp-action="Index" class="btn btn-info">Back to List</button>
 </form>

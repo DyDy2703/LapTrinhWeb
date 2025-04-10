@@ -32,7 +32,7 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
 
                     nonAdminUsers.Add(new EditRolesViewModel
                     {
-                        UserId = user.Id,
+                        Id = user.Id,
                         UserName = user.UserName,
                         Roles = roleItems
                     });
@@ -50,7 +50,7 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
 
             var model = new EditRolesViewModel
             {
-                UserId = user.Id,
+                Id = user.Id,
                 UserName = user.UserName,
                 Roles = allRoles.Select(r => new RoleItem
                 {
@@ -65,7 +65,7 @@ namespace DinhVanHoangDuy_2180609183_Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditRoles(EditRolesViewModel model)
         {
-            var user = await _userManager.FindByIdAsync(model.UserId);
+            var user = await _userManager.FindByIdAsync(model.Id);
             var currentRoles = await _userManager.GetRolesAsync(user);
 
             var selectedRoles = model.Roles.Where(r => r.IsSelected).Select(r => r.RoleName).ToList();

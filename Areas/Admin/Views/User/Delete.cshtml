@@ -1,0 +1,12 @@
+﻿@using DinhVanHoangDuy_2180609183_Web.Areas.Admin.Models
+@model EditRolesViewModel
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Are you sure you want to delete @Model.UserName?</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <button asp-action="Index" class="btn btn-info">Back to List</button>
+</form>
