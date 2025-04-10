@@ -1,14 +1,14 @@
 ﻿@model ShoppingCart
 
-<h2>Your Cart</h2>
+<h2>Giỏ hàng của bạn</h2>
 <table class="table table-bordered table-hover align-middle">
     <tr>
         
-        <th scope="col">Course</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-        <th scope="col">Total</th>
-        <th scope="col">Action</th>
+        <th scope="col">Khóa học</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Tổng cộng</th>
+        <th scope="col">Hành động</th>
     </tr>
     @foreach (var item in Model.Items)
     {
@@ -16,7 +16,6 @@
             <td>@item.Name</td>
             <td>@item.Quantity</td>
             <td>@item.Price</td>
-            
             <td>@(item.Price * item.Quantity)</td>
             <td>
                 <a asp-action="RemoveFromCart" asp-route-courseId="@item.CourseId">Remove</a>
@@ -25,7 +24,7 @@
     }
     <tfoot>
         <tr>
-            <td colspan="3" class="text-end fw-bold">Total:</td>
+            <td colspan="3" class="text-end fw-bold">Tổng thanh toán:</td>
             <td colspan="2" class="fw-bold text-danger">
                 @Model.Items.Sum(i => i.Price * i.Quantity).ToString("N0")
             </td>
